@@ -555,7 +555,8 @@ Here are the course summary as its given on the course [link](https://www.course
   - on each gradient descent iteration all the hidden units will always update the same (almost true)
   - The network starts with a forward pass where all weights and biases are constant, therefore during backprop all the grad updates are also the same 
   - The network will never learn anything interesting if all neurons of a layer weigh each neuron from the previous layer the same
-  - There is one small caveat – after first iteration, the connections from the input layer to the first hidden layer *will* change, because the gradient update for this layer would depend on the input distribution, which is presumably not symmetric. However, this asymmetry will (i assume, no analysis done) not be propagated to the next layers because at the second hidden layer, all the activations from the first hidden layer will still all be the same.
+  - There is one small caveat – after first iteration, the connections from the input layer to the first hidden layer *will* change, because the gradient update for this layer would depend on the input distribution, which is presumably not symmetric. Any one neuron of the hidden layer will have now weighed the inputs differently, but the other neurons in this layer will also weigh the inputs *exactly* like this neuron
+  -  Therefore, this asymmetry will (i assume, no analysis done) not be propagated to the next layers because at the second hidden layer, all the activations from the first hidden layer will still all be the same.
 
 - To solve this we initialize the W's with a small random numbers:
 
