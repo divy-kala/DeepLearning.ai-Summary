@@ -550,9 +550,12 @@ Here are the course summary as its given on the course [link](https://www.course
 
 - In logistic regression it wasn't important to initialize the weights randomly, while in NN we have to initialize them randomly.
 
-- If we initialize all the weights with zeros in NN it won't work (initializing bias with zero is OK):
+- If we initialize all the weights with zeros in NN it won't work (initializing bias with zero is OK, weights alone can break symmetry):
   - all hidden units will be completely identical (symmetric) - compute exactly the same function
-  - on each gradient descent iteration all the hidden units will always update the same
+  - on each gradient descent iteration all the hidden units will always update the same (almost true)
+  - The network starts with a forward pass where all weights and biases are constant, therefore during backprop all the grad updates are also the same 
+  - The network will never learn anything interesting if all neurons of a layer weigh each neuron from the previous layer the same
+  - There is one small caveat – after first iteration, the connections from the input layer to the first hidden layer *will* change, because the gradient update for this layer would depend on the input distribution, which is presumably not symmetric. However, this asymmetry will (i assume, no analysis done) not be propagated to the next layers because at the second hidden layer, all the activations from the first hidden layer will still all be the same.
 
 - To solve this we initialize the W's with a small random numbers:
 
