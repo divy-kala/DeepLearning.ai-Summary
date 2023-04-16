@@ -658,16 +658,23 @@ Implications of L2-regularization on:
 - Before we normalized input by subtracting the mean and dividing by variance. This helped a lot for the shape of the cost function and for reaching the minimum point faster.
 - The question is: *for any hidden layer can we normalize `A[l]` to train `W[l+1]`, `b[l+1]` faster?* This is what batch normalization is about.
 - There are some debates in the deep learning literature about whether you should normalize values before the activation function `Z[l]` or after applying the activation function `A[l]`. In practice, normalizing `Z[l]` is done much more often and that is what Andrew Ng presents.
+
 - Algorithm:
-  - Given `Z[l] = [z(1), ..., z(m)]`, i = 1 to m (for each input)
-  - Compute `mean = 1/m * sum(z[i])`
-  - Compute `variance = 1/m * sum((z[i] - mean)^2)`
-  - Then `Z_norm[i] = (z[i] - mean) / np.sqrt(variance + epsilon)` (add `epsilon` for numerical stability if variance = 0)
-    - Forcing the inputs to a distribution with zero mean and variance of 1.
-  - Then `Z_tilde[i] = gamma * Z_norm[i] + beta`
+  - Let there be (d) dimensions in the current layer and [m] samples in the batch
+  - For example, `Z(1) = [z(1)[1], ..., z(1)(m)]`, is the Z for the first dimension across all the batch
+  - For Z of each dimension Z(..), find mean and variance over the batch
+    - mean(i) = 1/m * sum from j = 1 to m (z(i)[j]) ----> mean for the ith dimension z
+    - variance(i) = 1/m * sum from j = 1 to m ((z(i)[j] - mean(i))**2)  ----> variance for the ith dimension z
+  - Standardize all batch Z()[i] from the computed mean and variance. Repeat for each dimension
+    - Then `Z_norm(1)[i] = (z(1)[i] - mean(1)) / np.sqrt(variance(1) + epsilon)` (add `epsilon` for numerical stability if variance = 0)  
+    - Forcing the inputs to a distribution with zero mean and variance of 1
+  - For each dimension create scalars learnable parameters gamma and beta 
+    - Then `Z_tilde(i) = gamma(i) * Z_norm[i] + beta(i)`
     - To make inputs belong to other distribution (with other mean and variance).
+
+- Points:
     - gamma and beta are learnable parameters of the model.
-    - There is a unique gamma and beta for each i. That is `**gamma[l]** = [gamma[1], ..., gamma[m]]`, and `**beta[l]** = [beta[1], ..., beta[m]]`
+    - There is a unique gamma and beta for each dimension i. That is `gamma(l) = [gamma(1), ..., gamma(d)]`, and similarly for beta
     - Making the NN learn the distribution of the outputs.
     - _Note:_ if `gamma = sqrt(variance + epsilon)` and `beta = mean` then `Z_tilde[i] = z[i]`
     - The reason this works is because, in a deep neural network after a gradient update, outputs from 10 layers earlier might change the distribution in the current layer drastically. By making sure the input distribution at the current layer is normal with mean beta and std dev gamma (beta and gamma are also updated, but slowly), the current layer gets firm ground to stand on.
