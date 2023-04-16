@@ -250,13 +250,13 @@ _**Implementation tip**_: if you implement gradient descent, one of the steps to
      - This makes your inputs centered around 0.
   3. Get the variance of the training set: `variance = (1/m) * sum(x(i)^2)`
   4. There are a few mistakes in the video and slides. For variance, use m-1 instead of m to get the unbiased variance estimate ([Bessel's correction*](https://en.wikipedia.org/wiki/Bessel%27s_correction#Proof_of_correctness_-_Alternate_3)). Another major error is that the video divides by the variance – instead divide x by sigma. For mean, keep using m. 
-  5. Normalize the variance. `X /= variance`. Another minor mistake in the video, this should technically be called 'standardization'
+  5. Normalize the variance. `X /= standard deviation`. Another minor mistake in the video, this should technically be called 'standardization'
 - These steps should be applied to training, dev, and testing sets (but using mean and variance of the train set).
 - Why normalize?
   - If we don't normalize the inputs our cost function will be deep and its shape will be inconsistent (elongated) then optimizing it will take a long time.
   - But if we normalize it the opposite will occur. The shape of the cost function will be consistent (look more symmetric like circle in 2D example) and we can use a larger learning rate alpha - the optimization will be faster.
 
-* The standard deviation which is calculated using deviations from the sample mean instead of the population mean underestimates the desired standard deviation of the population. Using 𝑛−1 instead of 𝑛 as the divisor corrects for that by making the result a little bit bigger. 
+\*The standard deviation which is calculated using deviations from the sample mean instead of the population mean underestimates the desired standard deviation of the population. Using 𝑛−1 instead of 𝑛 as the divisor corrects for that by making the result a little bit bigger. 
 
 ### Vanishing / Exploding gradients
 
