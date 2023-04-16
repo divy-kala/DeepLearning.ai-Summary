@@ -720,11 +720,12 @@ Implications of L2-regularization on:
 
 - When we train a NN with Batch normalization, we compute the mean and the variance of the mini-batch.
 - In testing we might need to process examples one at a time. The mean and the variance of one example won't make sense.
-- We have to compute an estimated value of mean and variance to use it in testing time.
-- We can use the weighted average across the mini-batches.
-- We will use the estimated values of the mean and variance to test.
-- This method is also sometimes called "Running average".
-- Could also send the entire training set through the network to get estimate for mean and variance. 
+- Instead of using minibatch mean and variance, we compute the population statistics so that output depends on input deterministically [[wiki]](https://en.wikipedia.org/wiki/Batch_normalization#Inference). 
+  - We have to compute an estimated value of mean and variance to use it in testing time.
+  - We can use the weighted average across the mini-batches.
+  - We will use the estimated values of the mean and variance to test.
+  - This method is also sometimes called "Running average".
+  - Could also send the entire training set through the network to get estimate for mean and variance. 
 - Don't worry about it too much, BN is pretty robust to the exact way of getting the estimates of mean and variance at test time.
 - In practice most often you will use a deep learning framework and it will contain some default implementation of doing such a thing.
 
