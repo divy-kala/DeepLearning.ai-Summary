@@ -202,6 +202,8 @@ _**Implementation tip**_: if you implement gradient descent, one of the steps to
   a3 = a3 / keep_prob       
   ```
 - Vector d[l] is used for forward and back propagation and is the same for them, but it is different for each iteration (pass) or training example.
+- Don't forget to apply dropout in backprop too
+- If we turn 20% of neurons off, then the activations for the next layer's input will roughly decrease by 20% (rougly because maybe some activations were dominating and we turned off those neurons). a_new ~= 0.2 * a_old. To remedy this we divide a_new by 0.2. a_new / 0.2 = 0.2 * a_old / 0.2 = a_old
 - At test time we don't use dropout. If you implement dropout at test time - it would add noise to predictions.
 
 ### Understanding Dropout
