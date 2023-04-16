@@ -667,8 +667,11 @@ Implications of L2-regularization on:
   - Then `Z_tilde[i] = gamma * Z_norm[i] + beta`
     - To make inputs belong to other distribution (with other mean and variance).
     - gamma and beta are learnable parameters of the model.
+    - There is a unique gamma and beta for each i. That is `**gamma[l]** = [gamma[1], ..., gamma[m]]`, and `**beta[l]** = [beta[1], ..., beta[m]]`
     - Making the NN learn the distribution of the outputs.
     - _Note:_ if `gamma = sqrt(variance + epsilon)` and `beta = mean` then `Z_tilde[i] = z[i]`
+    - The reason this works is because, in a deep neural network after a gradient update, outputs from 10 layers earlier might change the distribution in the current layer drastically. By making sure the input distribution at the current layer is normal with mean beta and std dev gamma (beta and gamma are also updated, but slowly), the current layer gets firm ground to stand on.
+    - Batchnorm is not understood that well 
 
 ### Fitting Batch Normalization into a neural network
 
