@@ -1202,7 +1202,7 @@ Here is the course summary as given on the course [link](https://www.coursera.or
 - Backprop:
   - Siamese from "Siamese Twins" i.e. Conjoined twins sharing common parts, in case of Siamese Network it is sharing common weights. In some sense, there's only one network. 
   - Notice how shared weights also prevents d(A, B) ≠ d(B, A) from happening.
-  - The gradients depend on the activation values. So for each branch gradients will be different and final update could be based on some averaging to share the weights. [[stackoverflow]([url](https://stackoverflow.com/a/66612729))]
+  - The gradients depend on the activation values. So for each branch gradients will be different and final update could be based on some averaging to share the weights. [[stackoverflow](https://stackoverflow.com/a/66612729)]
 - You need multiple images of the same person in your dataset. Then get some triplets out of your dataset. Dataset should be big enough.
 - Choosing the triplets A, P, N:
   - During training if A, P, N are chosen randomly (Subjet to A and P are the same and A and N aren't the same) then one of the problems this constrain is easily satisfied 
