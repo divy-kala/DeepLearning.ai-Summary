@@ -1197,6 +1197,7 @@ Here is the course summary as given on the course [link](https://www.coursera.or
 - Final Loss function:
   - Given 3 images (A, P, N)
   - `L(A, P, N) = max (||f(A) - f(P)||^2  - ||f(A) - f(N)||^2 + alpha , 0)`
+  - The max (..., 0) only exists to ensure that the loss (a non-negative real number) doesn't become negative.
   - `J = Sum(L(A[i], P[i], N[i]) , i)` for all triplets of images.
 - You need multiple images of the same person in your dataset. Then get some triplets out of your dataset. Dataset should be big enough.
 - Choosing the triplets A, P, N:
