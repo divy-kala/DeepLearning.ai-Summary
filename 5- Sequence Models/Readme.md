@@ -339,10 +339,11 @@ Here are the course summary as its given on the course [link](https://www.course
 - The multiplication in the equations are element wise multiplication.
 - What has been descried so far is the Simplified GRU unit. Let's now describe the full one:
   - The full GRU contains a new gate that is used with to calculate the candidate C. The gate tells you how relevant is C<sup>\<t-1></sup> to C<sup>\<t></sup>
-  - We employ the reset gate vector 
+  - My reasoning for reset gate: Even if our update vector decided to completely wipe out the previous memory, the current memory candidate is still influenced by the previous memory value. We employ the reset gate vector to wipe out the previous memory values in the candidate vector. 
   - Equations:   
     ![](Images/20.png)
   - Shapes are the same
+  - Mnemonic to remember GRU's design - GRU = GRU has Reset Update
 - So why we use these architectures, why don't we change them, how we know they will work, why not add another gate, why not use the simpler GRU instead of the full GRU; well researchers has experimented over years all the various types of these architectures with many many different versions and also addressing the vanishing gradient problem. They have found that full GRUs are one of the best RNN architectures  to be used for many different problems. You can make your design but put in mind that GRUs and LSTMs are standards. Some of these other versions also have names (Type 1, Type 2, Minimal gated unit, [wikipedia](https://en.wikipedia.org/wiki/Gated_recurrent_unit#))
 
 ### Long Short Term Memory (LSTM)
@@ -353,6 +354,7 @@ Here are the course summary as its given on the course [link](https://www.course
 - In GRU we have an update gate `U`, a relevance gate `r`, and a candidate cell variables C<sup>\~\<t></sup> while in LSTM we have an update gate `U` (sometimes it's called input gate I), a forget gate `F`, an output gate `O`, and a candidate cell variables C<sup>\~\<t></sup>
 - Drawings (inspired by http://colah.github.io/posts/2015-08-Understanding-LSTMs/):    
   ![](Images/22.png)
+- Mnemonic: LSTMs are in UFOs
 - Some variants on LSTM includes:
   - LSTM with **peephole connections**.
     - The normal LSTM with C<sup>\<t-1></sup> included with every gate.
