@@ -333,16 +333,17 @@ Here are the course summary as its given on the course [link](https://www.course
 - Shapes:
   - a<sup>\<t></sup> shape is (NoOfHiddenNeurons, 1)
   - c<sup>\<t></sup> is the same as a<sup>\<t></sup>
-  - c<sup>~\<t></sup> is the same as a<sup>\<t></sup>
-  - u<sup>\<t></sup> is also the same dimensions of a<sup>\<t></sup>
+  - c<sup>~\<t></sup>, the candidate activation vector is the same as a<sup>\<t></sup>
+  - u<sup>\<t></sup>, the update gate vector is also the same dimensions of a<sup>\<t></sup>
     - This means that each dimension of the memory cell can be updated individually
 - The multiplication in the equations are element wise multiplication.
 - What has been descried so far is the Simplified GRU unit. Let's now describe the full one:
   - The full GRU contains a new gate that is used with to calculate the candidate C. The gate tells you how relevant is C<sup>\<t-1></sup> to C<sup>\<t></sup>
+  - We employ the reset gate vector 
   - Equations:   
     ![](Images/20.png)
   - Shapes are the same
-- So why we use these architectures, why don't we change them, how we know they will work, why not add another gate, why not use the simpler GRU instead of the full GRU; well researchers has experimented over years all the various types of these architectures with many many different versions and also addressing the vanishing gradient problem. They have found that full GRUs are one of the best RNN architectures  to be used for many different problems. You can make your design but put in mind that GRUs and LSTMs are standards.
+- So why we use these architectures, why don't we change them, how we know they will work, why not add another gate, why not use the simpler GRU instead of the full GRU; well researchers has experimented over years all the various types of these architectures with many many different versions and also addressing the vanishing gradient problem. They have found that full GRUs are one of the best RNN architectures  to be used for many different problems. You can make your design but put in mind that GRUs and LSTMs are standards. Some of these other versions also have names (Type 1, Type 2, Minimal gated unit, [wikipedia](https://en.wikipedia.org/wiki/Gated_recurrent_unit#))
 
 ### Long Short Term Memory (LSTM)
 - LSTM - the other type of RNN that can enable you to account for long-term dependencies. It's more powerful and general than GRU.
