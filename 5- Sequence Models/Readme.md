@@ -296,6 +296,8 @@ Here are the course summary as its given on the course [link](https://www.course
 
 - We will represent the GRU with a similar drawings.
 
+- Let's first discuss a simplified version of GRUs:
+
 - Each layer in **GRUs**  has a new variable `C` which is the memory cell. It can tell to whether memorize something or not.
 
 - In GRUs, C<sup>\<t></sup> = a<sup>\<t></sup>
@@ -333,6 +335,7 @@ Here are the course summary as its given on the course [link](https://www.course
   - c<sup>\<t></sup> is the same as a<sup>\<t></sup>
   - c<sup>~\<t></sup> is the same as a<sup>\<t></sup>
   - u<sup>\<t></sup> is also the same dimensions of a<sup>\<t></sup>
+    - This means that each dimension of the memory cell can be updated individually
 - The multiplication in the equations are element wise multiplication.
 - What has been descried so far is the Simplified GRU unit. Let's now describe the full one:
   - The full GRU contains a new gate that is used with to calculate the candidate C. The gate tells you how relevant is C<sup>\<t-1></sup> to C<sup>\<t></sup>
